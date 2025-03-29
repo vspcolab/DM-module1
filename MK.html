@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Natseer Y-Diet Meal Kits – Diabetes Management (Tamil Nadu Edition)</title>
+  <!-- Bootstrap CSS for styling -->
+  <link 
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-MCw98/..." 
+    crossorigin="anonymous">
+  <style>
+    body {
+      background: #f7f7f7;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    header {
+      background: #28a745;
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+    }
+    section {
+      margin: 2rem 0;
+    }
+    .card {
+      margin-bottom: 1.5rem;
+    }
+    table {
+      width: 100%;
+    }
+    th, td {
+      text-align: left;
+      vertical-align: middle;
+      padding: 0.75rem;
+    }
+    th {
+      background: #28a745;
+      color: #fff;
+    }
+    tr:nth-child(even) {
+      background: #f2f2f2;
+    }
+    tr:hover {
+      background: #e2e2e2;
+      transition: background 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>📋 Natseer Y-Diet Meal Kits</h1>
+    <p>Diabetes Management - Tamil Nadu Edition</p>
+    <p><em>Each meal kit contains raw food materials for easy home preparation.</em></p>
+  </header>
+  
+  <!-- Back Home Button -->
+  <div class="container my-3">
+    <a href="index.html" class="btn btn-secondary">Back Home</a>
+  </div>
+  
+  <div class="container">
+    <!-- Meal Kits Table -->
+    <section id="meal-kits">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Meal Kits Overview</h3>
+          <div id="mealKitsTableContainer"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Features -->
+    <section id="features">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Key Features of the Meal Kits</h3>
+          <ul>
+            <li><strong>Raw, Unprocessed Ingredients:</strong> No refined or processed foods.</li>
+            <li><strong>Tailored for Tamil Nadu Cuisine:</strong> Uses local, affordable ingredients.</li>
+            <li><strong>Easy to Cook:</strong> Minimal preparation needed for home cooking.</li>
+            <li><strong>Balanced for Diabetes Management:</strong> Low GI, high fiber, and anti-inflammatory.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subscription Note -->
+    <section id="subscription">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Subscription Package</h3>
+          <p>These meal kits can be sold as a subscription package where users receive a weekly or monthly supply of raw ingredients, ensuring they stick to a diabetes-friendly diet.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- D3.js Library -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <!-- JavaScript to generate the meal kits table dynamically -->
+  <script>
+    // Data for the meal kits
+    const mealKitsData = [
+      {
+        mealKit: "Millet Breakfast Kit",
+        materials: "Kambu (Pearl Millet), Thinai (Foxtail Millet), Ragi (Finger Millet), Karuppatti (Palm Jaggery), Dry Ginger Powder",
+        usage: "For making porridges, dosas, and idiyappam"
+      },
+      {
+        mealKit: "Protein-Rich Legume Kit",
+        materials: "Kollu (Horse Gram), Green Gram, Black Chana, Peanuts, Sprouted Bengal Gram",
+        usage: "High-protein side dishes, stir-fries, and snacks"
+      },
+      {
+        mealKit: "Fiber-Rich Rice Kit",
+        materials: "Brown Rice, Samai (Little Millet), Varagu (Kodo Millet), Kuthiraivali (Barnyard Millet)",
+        usage: "Replacing white rice with fiber-rich grains"
+      },
+      {
+        mealKit: "Herbal & Spice Kit",
+        materials: "Turmeric Powder, Amla Powder, Methi (Fenugreek), Cinnamon, Dry Neem Leaves, Tulsi",
+        usage: "Herbal infusions, detox drinks, and spice blends"
+      },
+      {
+        mealKit: "Vegetable Dry Mix Kit",
+        materials: "Sun-Dried Bitter Gourd, Murungai (Drumstick) Leaf Powder, Sundakkai (Turkey Berry) Powder",
+        usage: "Nutrient-dense additions to curries, rasam, and soups"
+      },
+      {
+        mealKit: "Navadhanya (Nine-Grain) Kit",
+        materials: "Whole grains: Navadhanya mix (9 grains including wheat, barley, green gram, sesame, black gram)",
+        usage: "Multi-grain porridge, flour for rotis and dosas"
+      },
+      {
+        mealKit: "Oil-Free Cooking Kit",
+        materials: "Cold-Pressed Gingelly Oil (Sesame Oil), Virgin Coconut Oil, Himalayan Rock Salt",
+        usage: "Healthy alternatives to refined oils and salts"
+      },
+      {
+        mealKit: "Diabetes-Friendly Sweeteners Kit",
+        materials: "Karuppatti (Palm Jaggery), Natural Raw Honey, Coconut Sugar",
+        usage: "Natural sugar alternatives for diabetic-safe sweets"
+      },
+      {
+        mealKit: "Anti-Inflammatory Soup Kit",
+        materials: "Turmeric, Black Pepper, Dry Amla, Dry Ginger, Ash Gourd Powder",
+        usage: "Quick soups for reducing blood sugar inflammation"
+      },
+      {
+        mealKit: "Fermented Food Starter Kit",
+        materials: "Homemade Buttermilk Culture, Koji Rice (for probiotic rice), Fermented Idli-Dosa Batter Mix",
+        usage: "For gut health and improving digestion"
+      },
+      {
+        mealKit: "Snack Pack Kit",
+        materials: "Roasted Chana, Dry Fruits (Almonds, Walnuts), Makhana (Fox Nuts), Sprouted Seeds",
+        usage: "Healthy snack alternatives for diabetics"
+      },
+      {
+        mealKit: "Rasam & Kuzhambu Spice Kit",
+        materials: "Homemade Rasam Powder, Tamarind, Sundakkai, Curry Leaves Powder",
+        usage: "For easy-to-make diabetic-friendly Tamil Nadu dishes"
+      }
+    ];
+
+    // Create table element and header
+    const container = d3.select("#mealKitsTableContainer");
+    const table = container.append("table").attr("class", "table table-bordered");
+    const thead = table.append("thead");
+    const tbody = table.append("tbody");
+
+    // Define columns for the table
+    const columns = ["mealKit", "materials", "usage"];
+    const columnNames = ["Meal Kit", "Raw Food Materials Included", "Usage"];
+
+    // Append header row
+    thead.append("tr")
+      .selectAll("th")
+      .data(columnNames)
+      .enter()
+      .append("th")
+      .text(d => d);
+
+    // Append data rows
+    const rows = tbody.selectAll("tr")
+      .data(mealKitsData)
+      .enter()
+      .append("tr");
+
+    // Create cells for each row
+    rows.selectAll("td")
+      .data(function(row) {
+        return columns.map(function(column) {
+          return { column: column, value: row[column] };
+        });
+      })
+      .enter()
+      .append("td")
+      .text(d => d.value);
+    
+    // Add a simple hover effect using D3 (in addition to CSS)
+    rows.on("mouseover", function() {
+      d3.select(this).style("background-color", "#d0e9ff");
+    }).on("mouseout", function() {
+      d3.select(this).style("background-color", null);
+    });
+  </script>
+  
+  <!-- Bootstrap JS and dependencies (optional, for additional components) -->
+  <script 
+    src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
+    integrity="sha384-DfXdY..." 
+    crossorigin="anonymous"></script>
+  <script 
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" 
+    integrity="sha384-9/reFTGAW83EW2RDuL..." 
+    crossorigin="anonymous"></script>
+  <script 
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" 
+    integrity="sha384-B4gt1jrGC7Jh4Ag..." 
+    crossorigin="anonymous"></script>
+</body>
+</html>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Natseer Y-Diet Meal Kits</title>
+    <!-- Bootstrap CSS (using Bootstrap 5) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      /* Custom styling */
+      body {
+        background-color: #f8f9fa;
+      }
+      h2 {
+        margin-bottom: 30px;
+      }
+      /* Style for carousel images to display in a slightly larger frame while showing the full image */
+      .carousel-item img {
+        width: 100%;
+        height: 500px; /* Adjust height as needed for a bigger display */
+        object-fit: contain;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h2 class="text-center">Our Exclusive Natseer Y-Diet Meal Kits (Raw Food Materials Only)</h2>
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <!-- Carousel indicators -->
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 7"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="7" aria-label="Slide 8"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="8" aria-label="Slide 9"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="9" aria-label="Slide 10"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="10" aria-label="Slide 11"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="11" aria-label="Slide 12"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="12" aria-label="Slide 13"></button>
+        </div>
+
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="image1.png" alt="Image 1">
+          </div>
+          <div class="carousel-item">
+            <img src="image2.png" alt="Image 2">
+          </div>
+          <div class="carousel-item">
+            <img src="image3.png" alt="Image 3">
+          </div>
+          <div class="carousel-item">
+            <img src="image4.png" alt="Image 4">
+          </div>
+          <div class="carousel-item">
+            <img src="image5.png" alt="Image 5">
+          </div>
+          <div class="carousel-item">
+            <img src="image6.png" alt="Image 6">
+          </div>
+          <div class="carousel-item">
+            <img src="image7.png" alt="Image 7">
+          </div>
+          <div class="carousel-item">
+            <img src="image8.png" alt="Image 8">
+          </div>
+          <div class="carousel-item">
+            <img src="image9.png" alt="Image 9">
+          </div>
+          <div class="carousel-item">
+            <img src="image10.png" alt="Image 10">
+          </div>
+          <div class="carousel-item">
+            <img src="image11.png" alt="Image 11">
+          </div>
+          <div class="carousel-item">
+            <img src="image12.png" alt="Image 12">
+          </div>
+          <div class="carousel-item">
+            <img src="image13.png" alt="Image 13">
+          </div>
+        </div>
+
+        <!-- Carousel controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

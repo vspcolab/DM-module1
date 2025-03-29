@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Natseer Y-Diet Meal Kits – Pricing & Packaging Suggestions</title>
+  <!-- Bootstrap CSS for styling -->
+  <link 
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-MCw98/..." 
+    crossorigin="anonymous">
+  <style>
+    body {
+      background: #f7f7f7;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      padding-bottom: 2rem;
+    }
+    header {
+      background: #17a2b8;
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+    }
+    section {
+      margin: 2rem 0;
+    }
+    .card {
+      margin-bottom: 1.5rem;
+    }
+    table {
+      width: 100%;
+    }
+    th, td {
+      text-align: left;
+      vertical-align: middle;
+      padding: 0.75rem;
+    }
+    th {
+      background: #17a2b8;
+      color: #fff;
+    }
+    tr:nth-child(even) {
+      background: #f2f2f2;
+    }
+    tr:hover {
+      background: #e2e2e2;
+      transition: background 0.3s;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    ul li::before {
+      content: "✓";
+      color: #17a2b8;
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>📦 Natseer Y-Diet Meal Kits</h1>
+    <p>Pricing & Packaging Suggestion for Diabetes Management (Tamil Nadu Edition)</p>
+    <p><em>Affordable, Value-for-Money Subscription Packs for Tamil Nadu Middle-Class Families</em></p>
+  </header>
+    <!-- Back Home Button -->
+  <div class="container my-3">
+    <a href="index.html" class="btn btn-secondary">Back Home</a>
+  </div>
+  <div class="container">
+    <!-- 1️⃣ Meal Kit Subscription Options -->
+    <section id="subscription-options">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">1️⃣ Meal Kit Subscription Options</h3>
+          <p>To make it accessible for middle-class families, offer three subscription tiers:</p>
+          <div id="subscriptionTableContainer"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2️⃣ Individual Meal Kit Pricing -->
+    <section id="individual-pricing">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">2️⃣ Individual Meal Kit Pricing</h3>
+          <p>For customers who prefer a la carte purchases, here’s a breakdown:</p>
+          <div id="individualPricingTableContainer"></div>
+          <p><strong>Suggested Discount:</strong> Flat 10% discount for subscribers choosing 2+ meal kits together.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3️⃣ Packaging & Delivery Suggestions -->
+    <section id="packaging-delivery">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">3️⃣ Packaging & Delivery Suggestions</h3>
+          <ul>
+            <li>Eco-Friendly Packaging – Use cloth pouches & recyclable cartons.</li>
+            <li>Sealed & Fresh – Vacuum-sealed pouches for spices, nuts & herbs.</li>
+            <li>Subscription Box Branding – Custom Natseer Y-Diet Meal Box.</li>
+            <li>Weekly or Monthly Delivery – Based on customer preferences.</li>
+            <li>Storage Guide & Recipe Booklet – Educate subscribers on meal prep.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4️⃣ Marketing & Distribution Plan -->
+    <section id="marketing-distribution">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">4️⃣ Marketing & Distribution Plan</h3>
+          <ul>
+            <li>Online Ordering: Natseer website + WhatsApp Orders</li>
+            <li>Retail Partnering: Organic & Ayurvedic Stores in Tamil Nadu</li>
+            <li>Subscription Offers: "Buy 3 Months & Get 1 Kit Free"</li>
+            <li>Referral Discounts: ₹100 off for each new subscriber referral</li>
+            <li>Festive Combo Offers: Pongal, Diwali, Tamil New Year Healthy Combo Kits</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why This Pricing Model Works -->
+    <section id="why-model-works">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Why This Pricing Model Works</h3>
+          <ul>
+            <li>Affordable for middle-class families (compared to processed diabetes-friendly brands)</li>
+            <li>Encourages Subscription Model for long-term dietary habit formation</li>
+            <li>Higher Perceived Value due to premium, raw & natural ingredients</li>
+            <li>Supports Local Farmers & Promotes Sustainable Food Choices</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- D3.js Library -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <!-- JavaScript to dynamically generate the pricing tables -->
+  <script>
+    // Subscription Options Data
+    const subscriptionData = [
+      { plan: "Basic Kit", contents: "5 Meal Kits (Essential)", duration: "7 Days", pricing: "₹99 - ₹499" },
+      { plan: "Standard Kit", contents: "8 Meal Kits (Balanced)", duration: "21 Days", pricing: "₹1499 - ₹3999" },
+      { plan: "Premium Kit", contents: "12 Meal Kits (Complete)", duration: "48 Days", pricing: "₹2499 - ₹6999" }
+    ];
+    // Columns for subscription table
+    const subColumns = ["plan", "contents", "duration", "pricing"];
+    const subColumnNames = ["Plan", "Contents", "Duration", "Pricing (₹)"];
+
+    // Create subscription table
+    const subContainer = d3.select("#subscriptionTableContainer");
+    const subTable = subContainer.append("table").attr("class", "table table-bordered");
+    const subThead = subTable.append("thead");
+    const subTbody = subTable.append("tbody");
+
+    // Append header row for subscription table
+    subThead.append("tr")
+      .selectAll("th")
+      .data(subColumnNames)
+      .enter()
+      .append("th")
+      .text(d => d);
+
+    // Append subscription data rows
+    const subRows = subTbody.selectAll("tr")
+      .data(subscriptionData)
+      .enter()
+      .append("tr");
+
+    subRows.selectAll("td")
+      .data(function(row) {
+        return subColumns.map(function(column) {
+          return { column: column, value: row[column] };
+        });
+      })
+      .enter()
+      .append("td")
+      .text(d => d.value);
+
+    subRows.on("mouseover", function() {
+      d3.select(this).style("background-color", "#d0e9ff");
+    }).on("mouseout", function() {
+      d3.select(this).style("background-color", null);
+    });
+
+    // Individual Meal Kit Pricing Data
+    const pricingData = [
+      { kit: "Millet Breakfast Kit", quantity: "2 kg mixed millets + 250g Karuppatti", price: "₹399" },
+      { kit: "Protein-Rich Legume Kit", quantity: "500g Kollu + 500g Green Gram + 500g Chana", price: "₹349" },
+      { kit: "Fiber-Rich Rice Kit", quantity: "1 kg Brown Rice + 500g Little Millet", price: "₹399" },
+      { kit: "Herbal & Spice Kit", quantity: "250g each of Turmeric, Fenugreek, Amla, Cinnamon", price: "₹299" },
+      { kit: "Vegetable Dry Mix Kit", quantity: "250g Sundakkai, 200g Drumstick Powder", price: "₹349" },
+      { kit: "Navadhanya (Nine-Grain) Kit", quantity: "1 kg Multi-grain Mix", price: "₹449" },
+      { kit: "Oil-Free Cooking Kit", quantity: "500ml Cold-Pressed Sesame + Coconut Oil", price: "₹499" },
+      { kit: "Diabetes-Friendly Sweeteners Kit", quantity: "500g Karuppatti + 250g Coconut Sugar", price: "₹399" },
+      { kit: "Anti-Inflammatory Soup Kit", quantity: "250g Turmeric, Black Pepper, Dry Amla", price: "₹299" },
+      { kit: "Fermented Food Starter Kit", quantity: "500ml Buttermilk Culture + Koji Rice", price: "₹449" },
+      { kit: "Snack Pack Kit", quantity: "500g Mixed Nuts + 250g Sprouted Seeds", price: "₹599" },
+      { kit: "Rasam & Kuzhambu Spice Kit", quantity: "250g Rasam Powder + Sundakkai + Curry Leaf Powder", price: "₹349" }
+    ];
+    // Columns for individual pricing table
+    const priceColumns = ["kit", "quantity", "price"];
+    const priceColumnNames = ["Meal Kit Name", "Quantity", "Price (₹)"];
+
+    // Create individual pricing table
+    const priceContainer = d3.select("#individualPricingTableContainer");
+    const priceTable = priceContainer.append("table").attr("class", "table table-bordered");
+    const priceThead = priceTable.append("thead");
+    const priceTbody = priceTable.append("tbody");
+
+    // Append header row for individual pricing table
+    priceThead.append("tr")
+      .selectAll("th")
+      .data(priceColumnNames)
+      .enter()
+      .append("th")
+      .text(d => d);
+
+    // Append individual pricing rows
+    const priceRows = priceTbody.selectAll("tr")
+      .data(pricingData)
+      .enter()
+      .append("tr");
+
+    priceRows.selectAll("td")
+      .data(function(row) {
+        return priceColumns.map(function(column) {
+          return { column: column, value: row[column] };
+        });
+      })
+      .enter()
+      .append("td")
+      .text(d => d.value);
+
+    priceRows.on("mouseover", function() {
+      d3.select(this).style("background-color", "#d0e9ff");
+    }).on("mouseout", function() {
+      d3.select(this).style("background-color", null);
+    });
+  </script>
+  
+  <!-- Bootstrap JS and dependencies (optional) -->
+  <script 
+    src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
+    integrity="sha384-DfXdY..." 
+    crossorigin="anonymous"></script>
+  <script 
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" 
+    integrity="sha384-9/reFTGAW83EW2RDuL..." 
+    crossorigin="anonymous"></script>
+  <script 
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" 
+    integrity="sha384-B4gt1jrGC7Jh4Ag..." 
+    crossorigin="anonymous"></script>
+</body>
+</html>
